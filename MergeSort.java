@@ -25,9 +25,10 @@ public class MergeSort {
         int[] secondArr = recursive(secondHalf);
         int[] returnArr = new int[firstArr.length + secondArr.length];
 
-        int count = 0;
-        int i = 0;
-        int j = 0;
+        int count = 0; //Keeps track of the position to add the next element
+        int i = 0; //Keep track of the index of the firstArray
+        int j = 0; //Keep track of the index of the secondArr
+        
         while (i < firstArr.length) {
             while(j < secondArr.length) {
                 if(i < firstArr.length) {
@@ -40,12 +41,16 @@ public class MergeSort {
                         count++;
                         j++;
                     }
-                } else {
+                }
+                 //If the second Array still has element yet to be added, but first Array has already added all of it's elements.
+                 //Prevents an index out of bounds error, as i can become larger than firstArray before the while condition is checked.
+                else {
                     returnArr[count] = secondArr[j];
                     count++;
                     j++;
                 } 
-            } 
+            }
+            //If the first Array still has element yet to be added, but second Array has already added all of it's elements.
             if(j >= secondArr.length && i < firstArr.length) {
                 returnArr[count] = firstArr[i];
                 count++;
